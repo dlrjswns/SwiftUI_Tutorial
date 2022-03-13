@@ -8,42 +8,44 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    //@State 값의 변화를 감지 -> 뷰에 적용
+    @State
+    private var isActivated: Bool = false
+    
     var body: some View {
-        
-        HStack() {
-            MyVStackView()
-            MyVStackView()
-            MyVStackView()
-        }
-        .padding(.trailing ,19.0)
-        .background(Color.yellow)
+        NavigationView {
+            VStack {
+                HStack() {
+                    MyVStackView()
+                    MyVStackView()
+                    MyVStackView()
+                }
+                .padding(isActivated ? 50.0 : 10.0)
+                .background(isActivated ? Color.yellow : Color.black)
+                .onTapGesture {
+                    print("HStack 이 클릭되었다.")
+                    
+                    withAnimation {
+                        self.isActivated.toggle()
+                    }
+                    
+                } //HStack
+                //네비게이션 버튼(링크)
+                NavigationLink(destination: MyTextView()) {
+                    Text("네비게이션")
+                        .font(.system(size: 40))
+                        .fontWeight(.heavy)
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(30)
+                } .padding(.top, 50)
+            } //VStack
+        } //NavigationView
+    
     }
 }
-
-//struct MyVStackView: View {
-//    
-//    var body: some View {
-//        VStack {
-//            Text("1!")
-//                .fontWeight(.bold)
-//    //            .font(.largeTitle)
-//                .font(.system(size: 50))
-//            Text("2!")
-//                .fontWeight(.bold)
-//    //            .font(.largeTitle)
-//                .font(.system(size: 50))
-//            Text("3!")
-//                .fontWeight(.bold)
-//    //            .font(.largeTitle)
-//                .font(.system(size: 50))
-//            Text("4!")
-//                .fontWeight(.bold)
-//    //            .font(.largeTitle)
-//                .font(.system(size: 50))
-//        }
-//        .background(Color.red)
-//    }
-//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
