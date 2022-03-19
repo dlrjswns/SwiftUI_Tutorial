@@ -34,14 +34,14 @@ struct MyTextView: View {
             Spacer()
         }.background(backgroundColors[index])
         .edgesIgnoringSafeArea(.all)
-        .onTapGesture {
-            print("배경 아이템이 클릭 되었다")
-            
-            if(self.index == self.backgroundColors.count - 1) {
-                self.index = 0
-            } else {
-                self.index += 1
-            }
-        }
+//        .onTapGesture {
+//            print("배경 아이템이 클릭 되었다")
+//
+//            if(self.index == self.backgroundColors.count - 1) {
+//                self.index = 0
+//            } else {
+//                self.index += 1
+//            }
+//        }
     }
 }
